@@ -1,7 +1,7 @@
 ﻿function addQuestion() {
     $.post("/Strategies/Question", { strategyid: $(".strategy").data("id"), text: $("#question").val() },
         function (response) {
-            if ("error" in response) { alert(response.error); } else { $(".data.questions > ol").append("<li>" + response.text + "</li>"); $("#question").val(""); }
+            if ("error" in response) { alert(response.error); } else { $(".data.questions > ol").append("<li class='question-item'>" + response.text + "</li>"); $("#question").val(""); }
         }).fail(function () {
             alert("Unexpected error occurred. Please check you data and try again.")
         });
@@ -11,7 +11,7 @@ function addResearch() {
     $.post("/Strategies/Research", { strategyid: $(".strategy").data("id"), text: $("#research").val() },
         function (response) {
             if ("error" in response) { alert(response.error); } else {
-                var li = $("<li data-id='" + response.id + "'>" + $("#researchTemplate").html() + "</li>");
+                var li = $("<li class='research-item' data-id='" + response.id + "'>" + $("#researchTemplate").html() + "</li>");
                 li.find(".name").html(response.text);
                 $(".data.research > ol").append(li);
                 $("#research").val("");
@@ -29,7 +29,7 @@ function addAction(el) {
     },
         function (response) {
             if ("error" in response) { alert(response.error); } else {
-                $(".research-item[data-id=" + response.researchid + "] .data.actions > ol").append("<li>" + response.type + " - " + response.text + "</li>");
+                $(".research-item[data-id=" + response.researchid + "] .data.actions > ol").append("<li class='action-item'>" + response.type + " - " + response.text + "</li>");
             }
         }).fail(function () {
             alert("Unexpected error occurred. Please check you data and try again.")

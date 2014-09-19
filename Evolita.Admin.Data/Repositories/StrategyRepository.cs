@@ -43,7 +43,7 @@ namespace Evolita.Admin.Data.Repositories
 
         public string AddResearch(string strategyid, string text)
         {
-            Research research = new Research { id = Guid.NewGuid().ToString(), name = text };
+            Research research = new Research { id = Guid.NewGuid().ToString(), name = text, actions = new Data.Action[0] };
             _collection.Update(Query<Strategy>.EQ(s => s.id, strategyid), Update<Strategy>.Push(s => s.research, research).Set(s => s.last_modified, DateTime.UtcNow));
             return research.id;
         }

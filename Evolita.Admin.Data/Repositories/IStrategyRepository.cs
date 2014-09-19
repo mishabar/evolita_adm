@@ -7,7 +7,7 @@ namespace Evolita.Admin.Data.Repositories
 {
     public interface IStrategyRepository
     {
-        void Save(Strategy strategy);
+        Strategy Save(Strategy strategy);
 
         IEnumerable<Strategy> GetAll();
 

@@ -8,7 +8,7 @@ namespace Evolita.Admin.Services
 {
     public interface IStrategyService
     {
-        void Create(StrategyToken token);
+        StrategyToken Create(StrategyToken token);
 
         IEnumerable<StrategyToken> GetStrategies();
 

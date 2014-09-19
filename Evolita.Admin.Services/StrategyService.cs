@@ -17,9 +17,9 @@ namespace Evolita.Admin.Services
             _strategyRepository = strategyRepository;
         }
 
-        public void Create(StrategyToken token)
+        public StrategyToken Create(StrategyToken token)
         {
-            _strategyRepository.Save(token.AsStrategy());
+            return _strategyRepository.Save(token.AsStrategy()).AsToken();
         }
 
 

@@ -17,9 +17,10 @@ namespace Evolita.Admin.Data.Repositories
             _collection = db.GetCollection<Strategy>("strategies");
         }
 
-        public void Save(Strategy strategy)
+        public Strategy Save(Strategy strategy)
         {
             _collection.Save(strategy);
+            return strategy;
         }
 
 

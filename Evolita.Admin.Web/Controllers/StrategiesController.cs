@@ -38,8 +38,8 @@ namespace Evolita.Admin.Web.Controllers
             {
                 try
                 {
-                    _strategyService.Create(new StrategyToken { name = model.Name, owner = "<Authenticated User>" });
-                    return RedirectToAction("Index");
+                    StrategyToken token = _strategyService.Create(new StrategyToken { name = model.Name, owner = "<Authenticated User>" });
+                    return RedirectToAction("Edit", new { id = token.id });
                 }
                 catch (Exception ex)
                 {

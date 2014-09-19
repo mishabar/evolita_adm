@@ -21,13 +21,13 @@ namespace Evolita.Admin.Tokens
     {
         public static StrategyToken AsToken(this Strategy strategy)
         {
-            return new StrategyToken 
+            return new StrategyToken
             {
                 id = strategy.id,
                 name = strategy.name,
                 owner = strategy.owner,
                 last_modified = strategy.last_modified,
-                questions = strategy.questions,
+                questions = strategy.questions == null ? new string[0] : strategy.questions,
                 research = strategy.research == null ? new ResearchToken[0] : strategy.research.Select(r => r.AsToken())
             };
         }

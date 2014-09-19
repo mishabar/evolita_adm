@@ -40,7 +40,8 @@ namespace Evolita.Admin.Tokens
                 name = token.name,
                 owner = token.owner,
                 last_modified = token.last_modified.GetValueOrDefault(DateTime.UtcNow),
-                questions = token.questions == null ? new string[0] : token.questions
+                questions = token.questions == null ? new string[0] : token.questions,
+                research = token.research == null ? new Research[0] : token.research.Select(r => r.AsResearch())
             };
         }
     }

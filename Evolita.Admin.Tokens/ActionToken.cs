@@ -24,5 +24,15 @@ namespace Evolita.Admin.Tokens
                 name = action.name
             };
         }
+
+        public static Data.Action AsAction(this ActionToken action)
+        {
+            return new Data.Action
+            {
+                id = action.id,
+                type = action.type,
+                name = action.name
+            };
+        }
     }
 }

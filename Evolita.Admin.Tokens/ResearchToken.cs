@@ -25,5 +25,15 @@ namespace Evolita.Admin.Tokens
                 actions = research.actions == null? new ActionToken[0] : research.actions.Select(a => a.AsToken())
             };
         }
+
+        public static Research AsResearch(this ResearchToken research)
+        {
+            return new Research
+            {
+                id = research.id,
+                name = research.name,
+                actions = research.actions == null ? new Data.Action[0] : research.actions.Select(a => a.AsAction())
+            };
+        }
     }
 }

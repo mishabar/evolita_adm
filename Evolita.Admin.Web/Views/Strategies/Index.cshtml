@@ -1,4 +1,4 @@
-﻿@model IEnumerable<object>
+﻿@model IEnumerable<Evolita.Admin.Tokens.StrategyToken>
 @{
     ViewBag.Title = "Strategies";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -28,6 +28,17 @@
                 @if (Model.Count() == 0)
                 {
                     <tr><td colspan="3" class="text-center">No strategies yet. <a href="@Url.Action("Create", "Strategies")">Create</a> one now.</td></tr> 
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("Edit", new { id = item.id })">@item.name</a></td>
+                            <td class="text-nowrap">@item.owner</td>
+                            <td class="text-nowrap">@item.last_modified.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    } 
                 }
             </tbody>
         </table>

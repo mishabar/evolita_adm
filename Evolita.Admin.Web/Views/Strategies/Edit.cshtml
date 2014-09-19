@@ -1,0 +1,135 @@
+﻿@model Evolita.Admin.Tokens.StrategyToken
+@{
+    ViewBag.Title = "Edit Strategy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4>@Model.name</h4>
+        <small>by <em>@Model.owner</em></small>
+    </div>
+</div>
+<br />
+
+<div class="strategy" data-id="@Model.id">
+    <div class="section">
+        <div class="title"><i class="fa fa-question"></i> Questions</div>
+        <div class="data questions">
+            <ol>
+                @foreach (var item in Model.questions)
+                {
+                    <li>@item</li>
+                }
+            </ol>
+            <div class="form-group">
+                <textarea class="form-control" id="question"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" onclick="addQuestion()">Add</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="title"><i class="fa fa-cogs"></i> Research</div>
+        <div class="data research">
+            <ol>
+                @foreach (var item in Model.research)
+                {
+                    <li class="research-item" data-id="@item.id">
+                        <div>
+                            <div class="name">@item.name</div>
+                            <hr />
+                            <div>Actions</div>
+                            <div class="data actions">
+                                <ol>
+                                    @foreach (var action in item.actions)
+                                    {
+                                        <li>@action.type - @action.name</li>
+                                    }
+                                </ol>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="actionType">Type</label>
+                                            <select id="actionType" class="form-control">
+                                                <option value="Harvest">Harvest</option>
+                                                <option value="Compute">Compute</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label for="actionText">Description</label>
+                                            <input type="text" id="actionText" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary pull-right" onclick="addAction(this)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ol>
+            <div class="form-group">
+                <textarea class="form-control" id="research"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" onclick="addResearch()">Add</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="title"><i class="fa fa-calculator"></i> Analyze</div>
+        <div class="data analyze">
+            <ul>
+                <li>Aggregate</li>
+                <li>Rank</li>
+                <li>Pick</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="hidden" id="researchTemplate">
+    <div>
+        <div class="name"></div>
+        <div class="data actions">
+            <ol></ol>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="actionType">Type</label>
+                        <select id="actionType" class="form-control">
+                            <option value="Harvest">Harvest</option>
+                            <option value="Compute">Compute</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="actionText">Description</label>
+                        <input type="text" id="actionText" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary pull-right" onclick="addAction()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/stragtegy.js"></script>
+}
